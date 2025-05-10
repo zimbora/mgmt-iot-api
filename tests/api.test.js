@@ -1,11 +1,19 @@
 const assert = require('assert');
 var moment = require('moment');
+const fs = require('fs');
+const FormData = require('form-data');
 
 var api = require('../index.js')
 var config = require('../config')
 
 var deviceId = 1;
 var modelId = 4;
+var clientId = 5;
+var email = "lucas.ua.eet@gmail.com";
+var pathToFile = "./tests/"
+var filename = "demo.bin"
+
+var firmwareId = 0;
 
 api.init({
   domain : config.domain,
@@ -170,9 +178,21 @@ describe('test Clients API', () => {
     expect(res[0]).toHaveProperty("type");
   });
 
+  it('getClientDevices', async () => {
+    const res = await api.client.getDevices(clientId);
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBeGreaterThan(0);
+  });
+
+  it('getClientId', async () => {
+    const res = await api.client.getClientId(email);
+    expect(typeof res).toBe('object');
+    expect(res).toHaveProperty("client_id");
+  });
+
 });
 
-describe('test Models API', () => {
+describe.only('test Models API', () => {
 
   it('getModelInfo', async () => {
     const res = await api.model.getInfo(modelId);
@@ -200,6 +220,27 @@ describe('test Models API', () => {
     expect(res[0]).toHaveProperty("fw_release");
     expect(res[0]).toHaveProperty("model_id");
     expect(res[0]).toHaveProperty("token");
+    
+  });
+
+  it('uploadFirmware', async () => {
+
+    const form = new FormData();
+    
+    form.append('file', fs.createReadStream(pathToFile+filename));
+    let res = await api.model.uploadFirmware(modelId,form,filename,"0.0.0","0.0.0");
+    expect(typeof res).toBe('object');
+
+    if(res){
+      firmwareId = res?.insertId;
+    }
+    
+  });
+
+  it('deleteFirmware', async () => {
+
+    res = await api.model.deleteFirmware(modelId, firmwareId);
+    expect(typeof res).toBe('object');
     
   });
 

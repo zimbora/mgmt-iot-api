@@ -21,6 +21,27 @@ api.state()
 
 
 ```
+## Requests
+
+	"/api-status"
+	"/devices/list"
+	"/users"
+	"/clients"
+	"/mqtt/credentials"
+	"/device/${deviceId}/clients"
+	"/device/${deviceId}/info"
+	"/client/${clientId}/devices"
+	"/client/id"
+	"/model/'+modelId"
+	"/model/${modelId}/firmwares"
+
+## Posts
+
+## Put
+	"/model/${modelId}/firmwares"
+
+## Delete
+	"/model/${modelId}/firmware"
 
 ## Tests
 

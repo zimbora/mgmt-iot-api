@@ -3,7 +3,7 @@
 ## 0 step	
 
 	- Run npm test.js - check results
-	
+
 ## 1st step
 	
 	- Add changes to Changelog.md file
@@ -26,3 +26,7 @@
 	
 	launch release on git and npm:
 		>> gh release create ${tag}
+
+## 4th step
+	
+	npm publish

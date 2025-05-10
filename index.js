@@ -97,6 +97,14 @@ module.exports = {
       .catch( (error) => {return Promise.reject(error)})
     },
 
+    // get devices associated to a client
+    getClientId: (email)=>{
+
+      return axios_get(`/client/id?email=${email}`)
+      .then( (response) => {return Promise.resolve(response)})
+      .catch( (error) => {return Promise.reject(error)})
+    },
+
   },
 
   model : {
@@ -116,6 +124,30 @@ module.exports = {
       .then( (response) => {return Promise.resolve(response)})
       .catch( (error) => {return Promise.reject(error)})
     },
+
+    uploadFirmware: (modelId,form,filename,fwVersion,appVersion)=>{
+
+      return axios_uploadFile(`/model/${modelId}/firmwares`,form,
+        {
+          filename:filename,
+          originalname:filename,
+          fw_version:fwVersion,
+          app_version:appVersion
+        }
+      )
+      .then( (response) => {return Promise.resolve(response)})
+      .catch( (error) => {return Promise.reject(error)})
+    },
+
+    deleteFirmware: (modelId,firmwareId)=>{
+      return axios_delete(`/model/${modelId}/firmware`,
+        {
+          id:firmwareId
+        }
+      )
+      .then( (response) => {return Promise.resolve(response)})
+      .catch( (error) => {return Promise.reject(error)})
+    }
 
   },
 
@@ -143,9 +175,6 @@ function axios_init(opts, debug = false){
 
 function axios_get(path, params = {}, headers = {}){
 
-  var data;
-  var error;
-
   return instance.get(path,{params:params,headers:headers})
     .then(function (response) {
       if(response.data.Error){
@@ -160,5 +189,84 @@ function axios_get(path, params = {}, headers = {}){
     })
     .finally(function () {
       // always executed
+    });
+}
+
+function axios_post(path, data = {}, headers = {}) {
+  return instance.post(path, data, { headers: headers })
+    .then(function (response) {
+      if(response.data.Error){
+        console.log(response.data.Message);
+        return Promise.resolve(null);
+      } else {
+        return Promise.resolve(response.data.Result);
+      }
+    })
+    .catch(function (err) {
+      console.log(err.code + ": " + err.response?.data?.Message);
+      return Promise.reject(err.code + ": " + err.response?.data?.Message);
+    });
+}
+
+function axios_put(path, data = {}, headers = {}) {
+  return instance.put(path, data, { headers: headers })
+    .then(function (response) {
+      if (response.data.Error) {
+        console.log(response.data.Message);
+        return Promise.resolve(null);
+      } else {
+        return Promise.resolve(response.data.Result);
+      }
+    })
+    .catch(function (err) {
+      console.log(err.code + ": " + err.response?.data?.Message);
+      return Promise.reject(err.code + ": " + err.response?.data?.Message);
+    });
+}
+
+function axios_delete(path, data = {}, headers = {}) {
+  return instance.delete(path, { data: data, headers: headers })
+    .then(function (response) {
+      if (response.data.Error) {
+        console.log(response.data.Message);
+        return Promise.resolve(null);
+      } else {
+        return Promise.resolve(response.data.Result);
+      }
+    })
+    .catch(function (err) {
+      console.log(err.code + ": " + err.response?.data?.Message);
+      return Promise.reject(err.code + ": " + err.response?.data?.Message);
+    });
+}
+
+function axios_uploadFile(path, formData, additionalData = {}, headers = {}) {
+  
+  // Append any additional data
+  for (const key in additionalData) {
+    if (additionalData.hasOwnProperty(key)) {
+      formData.append(key, additionalData[key]);
+    }
+  }
+
+  // Set headers for multipart/form-data
+  const config = {
+    headers: {
+      ...headers,
+    }
+  };
+
+  return instance.post(path, formData, config)
+    .then(response => {
+      if (response.data.Error) {
+        console.log(response.data.Message);
+        return Promise.resolve(null);
+      } else {
+        return Promise.resolve(response.data.Result);
+      }
+    })
+    .catch(err => {
+      console.log(err.code + ": " + err.response?.data?.Message);
+      return Promise.reject(err.code + ": " + err.response?.data?.Message);
     });
 }

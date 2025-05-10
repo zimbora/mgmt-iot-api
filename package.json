@@ -1,5 +1,5 @@
 {
-  "name": "inloc-api",
+  "name": "mgmt-iot-api",
   "version": "1.0.0",
   "description": "api to access mgmt-iot server",
   "main": "index.js",
