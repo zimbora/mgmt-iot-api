@@ -19,14 +19,20 @@ module.exports = {
 
   },
 
-  getDevices : ()=>{
+  getDevices : (modelId=null,deviceId=null)=>{
 
     let params = {};
-      return axios_get('/devices/list',params)
-      .then( (response) => {
-        return Promise.resolve(response)
-      })
-      .catch( (error) => {return Promise.reject(error)})
+    if(modelId != null){
+      params['modelId'] = modelId;
+      if(deviceId != null){
+        params['deviceId'] = deviceId;
+      }
+    }
+    return axios_get('/devices/list',params)
+    .then( (response) => {
+      return Promise.resolve(response)
+    })
+    .catch( (error) => {return Promise.reject(error)})
   },
 
   getUsers : ()=>{
