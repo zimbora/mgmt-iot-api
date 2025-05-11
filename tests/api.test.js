@@ -192,7 +192,7 @@ describe('test Clients API', () => {
 
 });
 
-describe.only('test Models API', () => {
+describe('test Models API', () => {
 
   it('getModelInfo', async () => {
     const res = await api.model.getInfo(modelId);
