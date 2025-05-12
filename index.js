@@ -35,6 +35,16 @@ module.exports = {
     .catch( (error) => {return Promise.reject(error)})
   },
 
+  getModels : ()=>{
+
+    let params = {};
+      return axios_get('/models',params)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+  },
+
   getUsers : ()=>{
 
     let params = {};

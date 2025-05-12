@@ -194,6 +194,14 @@ describe('test Clients API', () => {
 
 describe('test Models API', () => {
 
+  it('getModels', async () => {
+    const res = await api.getModels();
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBeGreaterThan(0);
+    expect(res[0]).toHaveProperty("id");
+    expect(res[0]).toHaveProperty("name");
+  });
+
   it('getModelInfo', async () => {
     const res = await api.model.getInfo(modelId);
     expect(typeof res).toBe('object');
