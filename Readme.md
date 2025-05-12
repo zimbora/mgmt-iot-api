@@ -32,6 +32,7 @@ api.state()
 	"/device/${deviceId}/info"
 	"/client/${clientId}/devices"
 	"/client/id"
+	"/models"
 	"/model/'+modelId"
 	"/model/${modelId}/firmwares"
 
