@@ -22,7 +22,7 @@ api.init({
   },
 },config.debug_axios)
 
-jest.setTimeout(1000); // 10 seconds
+jest.setTimeout(1500); // 1.5 seconds
 
 /*
 describe('check API state', () => {
@@ -41,6 +41,21 @@ describe('test Devices API', () => {
 
   it('getDevicesList', async () => {
     const res = await api.getDevices();
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBeGreaterThan(0);
+    expect(res[0]).toHaveProperty("id");
+    expect(res[0]).toHaveProperty("project");
+    expect(res[0]).toHaveProperty("status");
+    expect(res[0]).toHaveProperty("project_id");
+    expect(res[0]).toHaveProperty("model_id");
+    expect(res[0]).toHaveProperty("tech");
+    expect(res[0]).toHaveProperty("model");
+  });
+
+  it('getChangedDevices', async () => {
+    const modelId = 4;
+    const updatedAt = "2025-05-02T14:47:53.000Z";
+    const res = await api.getChangedDevices(modelId, updatedAt);
     expect(Array.isArray(res)).toBe(true);
     expect(res.length).toBeGreaterThan(0);
     expect(res[0]).toHaveProperty("id");

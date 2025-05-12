@@ -19,13 +19,26 @@ module.exports = {
 
   },
 
-  getDevices : (modelId=null,deviceId=null)=>{
+  getDevices : (modelId=null)=>{
 
     let params = {};
     if(modelId != null){
       params['modelId'] = modelId;
-      if(deviceId != null){
-        params['deviceId'] = deviceId;
+    }
+    return axios_get('/devices/list',params)
+    .then( (response) => {
+      return Promise.resolve(response)
+    })
+    .catch( (error) => {return Promise.reject(error)})
+  },
+
+  getChangedDevices : (modelId=null,updatedAt=null)=>{
+
+    let params = {};
+    if(modelId != null){
+      params['modelId'] = modelId;
+      if(updatedAt != null){
+        params['updatedAt'] = updatedAt;
       }
     }
     return axios_get('/devices/list',params)
