@@ -1,6 +1,6 @@
 {
   "name": "mgmt-iot-api",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "api to access mgmt-iot server",
   "main": "index.js",
   "scripts": {

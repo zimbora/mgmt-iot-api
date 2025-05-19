@@ -1,5 +1,9 @@
 # Changelog
 
+# v1.0.4
+	new methods:
+		- getChangedDevicesPermissions(updateAt)
+
 # v1.0.3
 	new methods:
 		- getChangedDevices(modelId,updateAt)
