@@ -67,6 +67,19 @@ describe('test Devices API', () => {
     expect(res[0]).toHaveProperty("model");
   });
 
+  it('getChangedDevicesPermissions', async () => {
+    const updatedAt = "2025-05-02T14:47:53.000Z";
+    const res = await api.getChangedDevicesPermissions(updatedAt);
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBeGreaterThan(0);
+    expect(res[0]).toHaveProperty("id");
+    expect(res[0]).toHaveProperty("client_id");
+    expect(res[0]).toHaveProperty("device_id");
+    expect(res[0]).toHaveProperty("level");
+    expect(res[0]).toHaveProperty("createdAt");
+    expect(res[0]).toHaveProperty("updatedAt");
+  });
+
   it('getDeviceClients', async () => {
     const res = await api.device.getClients(deviceId);
     expect(Array.isArray(res)).toBe(true);

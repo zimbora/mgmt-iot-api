@@ -48,6 +48,21 @@ module.exports = {
     .catch( (error) => {return Promise.reject(error)})
   },
 
+  getChangedDevicesPermissions : (updatedAt=null)=>{
+
+    let params = {};
+    
+    if(updatedAt != null){
+      params['updatedAt'] = updatedAt;
+    }
+    
+    return axios_get('/devices/permissions',params)
+    .then( (response) => {
+      return Promise.resolve(response)
+    })
+    .catch( (error) => {return Promise.reject(error)})
+  },
+
   getModels : ()=>{
 
     let params = {};
