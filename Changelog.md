@@ -1,5 +1,17 @@
 # Changelog
 
+# v1.0.5
+	Compatible with mgmt-iot-web v1.0.58
+	supports new api calls:
+	- device/:deviceId/project/info
+	- device/:deviceId/project/logs?sensor=x
+	- device/:deviceId/fw/info
+	- device/:deviceId/fw/logs?sensor=x
+	- device/:deviceId/model/info
+	- device/:deviceId/model/logs?sensor=x
+	removes api calls:
+	- device/:deviceId/info
+
 # v1.0.4
 	new methods:
 		- getChangedDevicesPermissions(updateAt)

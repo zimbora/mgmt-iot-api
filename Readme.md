@@ -24,17 +24,22 @@ api.state()
 ## Requests
 
 	"/api-status"
-	"/devices/list"
 	"/users"
 	"/clients"
 	"/mqtt/credentials"
-	"/device/${deviceId}/clients"
-	"/device/${deviceId}/info"
 	"/client/${clientId}/devices"
-	"/client/id"
+	"/client/id?email=x@gmail.com"
 	"/models"
 	"/model/'+modelId"
 	"/model/${modelId}/firmwares"
+	"/devices/list"
+	"/device/${deviceId}/clients"
+	"/device/:deviceId/project/info"
+	"/device/:deviceId/project/logs?sensor=x"
+	"/device/:deviceId/fw/info"
+	"/device/:deviceId/fw/logs?sensor=x"
+	"/device/:deviceId/model/info"
+	"/device/:deviceId/model/logs?sensor=x"
 
 ## Posts
 
