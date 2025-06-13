@@ -117,11 +117,77 @@ module.exports = {
 
     },
 
-    //get device info
-    getInfo : (deviceId)=>{
+    //get device info from project table
+    getProjectInfo : (deviceId)=>{
 
       let params = {}
-      return axios_get(`/device/${deviceId}/info`,params)
+      return axios_get(`/device/${deviceId}/project/info`,params)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
+    //get logs from project table
+    getProjectLogs : (deviceId,sensor)=>{
+
+      let params = {
+        "sensor":sensor
+      }
+      return axios_get(`/device/${deviceId}/project/logs`,params, {}, 30000)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
+    //get device info from fw table
+    getFwInfo : (deviceId)=>{
+
+      let params = {}
+      return axios_get(`/device/${deviceId}/fw/info`,params)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
+    //get logs from fw table
+    getFwLogs : (deviceId,sensor)=>{
+
+      let params = {
+        "sensor":sensor
+      }
+      return axios_get(`/device/${deviceId}/fw/logs`,params, {}, 30000)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
+    //get device info from model table
+    getModelInfo : (deviceId)=>{
+
+      let params = {}
+      return axios_get(`/device/${deviceId}/model/info`,params)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
+    //get logs from model table
+    getModelLogs : (deviceId,sensor)=>{
+
+      let params = {
+        "sensor":sensor
+      }
+      return axios_get(`/device/${deviceId}/model/logs`,params, {}, 30000)
       .then( (response) => {
         return Promise.resolve(response)
       })
@@ -217,9 +283,9 @@ function axios_init(opts, debug = false){
 
 }
 
-function axios_get(path, params = {}, headers = {}){
+function axios_get(path, params = {}, headers = {}, timeout = 1500){
 
-  return instance.get(path,{params:params,headers:headers})
+  return instance.get(path,{params:params,headers:headers, timeout:timeout})
     .then(function (response) {
       if(response.data.Error){
         console.log(response.data.Message);
