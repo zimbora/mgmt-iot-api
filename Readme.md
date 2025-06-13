@@ -34,6 +34,7 @@ api.state()
 	"/model/${modelId}/firmwares"
 	"/devices/list"
 	"/device/${deviceId}/clients"
+	"/device/:deviceId/info" (!!don't use it, use "/device/:deviceId/project/info" instead)
 	"/device/:deviceId/project/info"
 	"/device/:deviceId/project/logs?sensor=x"
 	"/device/:deviceId/fw/info"

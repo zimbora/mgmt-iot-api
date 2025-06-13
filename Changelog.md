@@ -1,5 +1,9 @@
 # Changelog
 
+# v1.0.6
+	recovers call /device/${deviceId}/info for dashboard compatibility
+	Compatible with mgmt-iot-web v1.0.59
+
 # v1.0.5
 	Compatible with mgmt-iot-web v1.0.58
 	supports new api calls:
