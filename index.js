@@ -117,6 +117,15 @@ module.exports = {
 
     },
 
+    getInfo : (deviceId)=>{
+      let params = {}
+      return axios_get(`/device/${deviceId}/info`,params)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+    },
+
     //get device info from project table
     getProjectInfo : (deviceId)=>{
 

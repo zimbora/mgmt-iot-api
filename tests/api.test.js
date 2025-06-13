@@ -87,6 +87,34 @@ describe('test Devices API', () => {
     expect(res.length).toBeGreaterThan(0);
   });
 
+  it('getInfo', async () => {
+    const res = await api.device.getInfo(deviceId);
+    expect(typeof res).toBe('object');
+    expect(res).toHaveProperty("uid");
+    expect(res).toHaveProperty("status");
+    expect(res).toHaveProperty("model_id");
+    expect(res).toHaveProperty("tech");
+    expect(res).toHaveProperty("id");
+    expect(res).toHaveProperty("device_id");
+    expect(res).toHaveProperty("fw_version");
+    expect(res).toHaveProperty("app_version");
+    expect(res).toHaveProperty("model");
+    expect(res).toHaveProperty("logs_table");
+    expect(res).toHaveProperty("settings");
+    expect(res).toHaveProperty("ar");
+    expect(res).toHaveProperty("alarms");
+    expect(res).toHaveProperty("js_program");
+    expect(res).toHaveProperty("setpoints");
+    expect(res).toHaveProperty("fw_release");
+    expect(res).toHaveProperty("settings_ref");
+    expect(res).toHaveProperty("ar_ref");
+    expect(res).toHaveProperty("alarms_ref");
+    expect(res).toHaveProperty("js_program_ref");
+    expect(res).toHaveProperty("setpoints_ref");
+    expect(res).toHaveProperty("fota_tries");
+    expect(res).toHaveProperty("project");
+  });
+
   it('getProjectInfo', async () => {
     const res = await api.device.getProjectInfo(deviceId);
     expect(typeof res).toBe('object');
