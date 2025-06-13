@@ -26,7 +26,3 @@
 	
 	launch release on git and npm:
 		>> gh release create ${tag}
-
-## 4th step
-	
-	npm publish
