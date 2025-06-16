@@ -204,6 +204,22 @@ module.exports = {
 
     },
 
+    sendMqttMessage : (deviceId,topic,payload,qos,retain)=>{
+
+      let data = {
+        "topic":topic,
+        "payload":payload,
+        "qos":qos,
+        "retain":retain,
+      }
+      return axios_post(`/device/${deviceId}/mqtt/message`,data, {},5000)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
   },
 
   client : {
@@ -311,8 +327,8 @@ function axios_get(path, params = {}, headers = {}, timeout = 1500){
     });
 }
 
-function axios_post(path, data = {}, headers = {}) {
-  return instance.post(path, data, { headers: headers })
+function axios_post(path, data = {}, headers = {}, timeout = 1500) {
+  return instance.post(path, data, { headers: headers }, {timeout:timeout})
     .then(function (response) {
       if(response.data.Error){
         console.log(response.data.Message);

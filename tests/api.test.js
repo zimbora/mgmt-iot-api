@@ -207,6 +207,32 @@ describe('test Devices API', () => {
     
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 
+  it('sendMqttMessage', async () => {
+    
+    const res = await api.device.sendMqttMessage(
+      deviceId, 
+      "fw/settings/keepalive/set",
+      "{\"period\":\"60\"}",
+      1,
+      0,
+      );
+    
+  }, 30000); // timeout in milliseconds (e.g., 30 seconds)
+
+  it('sendMqttMessage', async () => {
+    
+    const res = await api.device.sendMqttMessage(
+      7, 
+      "fw/settings/keepalive/get",
+      "",
+      1,
+      0,
+      );
+      
+      expect(typeof res).toBe('string');
+
+  }, 30000); // timeout in milliseconds (e.g., 30 seconds)
+
 });
 
 describe('test Users API', () => {
