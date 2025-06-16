@@ -2,6 +2,7 @@
 
 # v1.0.7
 	Adds call to send mqtt message and gets its response
+	Compatible with mgmt-iot-web >= v1.0.60
 
 # v1.0.6
 	recovers call /device/${deviceId}/info for dashboard compatibility
