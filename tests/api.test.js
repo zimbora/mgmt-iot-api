@@ -215,7 +215,7 @@ describe('test Devices API', () => {
       "{\"period\":\"60\"}",
       1,
       0,
-      );
+    );
     
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 
@@ -227,7 +227,7 @@ describe('test Devices API', () => {
       "",
       1,
       0,
-      );
+    );
       
       expect(typeof res).toBe('string');
 
