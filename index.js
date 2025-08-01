@@ -178,6 +178,20 @@ module.exports = {
 
     },
 
+    //get logs
+    getLogs : (deviceId,sensor)=>{
+
+      let params = {
+        "sensor":sensor
+      }
+      return axios_get(`/device/${deviceId}/logs`,params, {}, 30000)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
     //get device info from model table
     getModelInfo : (deviceId)=>{
 

@@ -187,6 +187,14 @@ describe('test Devices API', () => {
     
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 
+  it('getLogs', async () => {
+    
+    const res = await api.device.getLogs(deviceId, "status");
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBeGreaterThan(0);
+    
+  }, 30000); // timeout in milliseconds (e.g., 30 seconds)
+
     it('getModelInfo', async () => {
     const res = await api.device.getModelInfo(deviceId);
     expect(typeof res).toBe('object');
