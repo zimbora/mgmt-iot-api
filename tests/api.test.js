@@ -114,6 +114,15 @@ describe('test Devices API', () => {
     expect(res).toHaveProperty("fota_tries");
     expect(res).toHaveProperty("project");
   });
+    
+  it('getLogs', async () => {
+    
+    const res = await api.device.getLogs(deviceId, "status");
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBeGreaterThan(0);
+    expect(res[0]).toHaveProperty("status");
+    expect(res[0]).toHaveProperty("createdAt");
+  }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 
   it('getProjectInfo', async () => {
     const res = await api.device.getProjectInfo(deviceId);
@@ -207,7 +216,7 @@ describe('test Devices API', () => {
     
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 
-    it('getModelInfo', async () => {
+  it('getModelInfo', async () => {
     const res = await api.device.getModelInfo(deviceId);
     expect(typeof res).toBe('object');
     expect(res).toHaveProperty("id");

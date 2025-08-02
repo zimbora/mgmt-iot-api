@@ -125,6 +125,22 @@ module.exports = {
       })
       .catch( (error) => {return Promise.reject(error)})
     },
+ 
+    //get logs
+    getLogs : (deviceId,sensor)=>{
+      
+      let params = {
+        "sensor":sensor
+      }
+
+      return axios_get(`/device/${deviceId}/logs`,params, {}, 30000)
+
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
 
     //get device info from project table
     getProjectInfo : (deviceId)=>{
@@ -177,7 +193,7 @@ module.exports = {
       .catch( (error) => {return Promise.reject(error)})
 
     },
-
+    
     //get device info from sensor table
     getSensorInfo : (deviceId)=>{
 
@@ -196,7 +212,9 @@ module.exports = {
       let params = {
         "sensor":sensor
       }
+
       return axios_get(`/device/${deviceId}/sensor/logs`,params, {}, 30000)
+
       .then( (response) => {
         return Promise.resolve(response)
       })
