@@ -11,16 +11,9 @@
 
 ## 2nd step
 	
-	1st - commit files to git
-		>> git add -A
-		>> git commit -m "message"
-		>> git push
+	commit files
 
-	2nd - publish tag
-	commands:
-		>> tag="1.0.56"
-		>> git tag ${tag}
-		>> git push origin ${tag}
+	create and push tag
 
 ## 3rd step
 	

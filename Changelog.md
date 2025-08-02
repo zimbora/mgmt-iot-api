@@ -1,5 +1,12 @@
 # Changelog
 
+# v1.0.8
+	Adds sensor info and sensor logs support
+	Adds getLogs method to device API without fw prefix
+	Updates API test expectations to match new response structures
+	tests/api.test.js: replaces fw_version by version
+	Fix getModelInfo and getModelFirmwares test property expectations
+
 # v1.0.7
 	Adds call to send mqtt message and gets its response
 	Compatible with mgmt-iot-web >= v1.0.60
