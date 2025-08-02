@@ -357,6 +357,8 @@ describe('test Models API', () => {
     expect(res).toHaveProperty("ar_enabled");
     expect(res).toHaveProperty("alarms_enabled");
     expect(res).toHaveProperty("js_code_enabled");
+    expect(res).toHaveProperty("createdAt");
+    expect(res).toHaveProperty("updatedAt");
   });
 
   it('getModelFirmwares', async () => {
@@ -368,9 +370,11 @@ describe('test Models API', () => {
     expect(res[0]).toHaveProperty("originalname");
     expect(res[0]).toHaveProperty("version");
     expect(res[0]).toHaveProperty("app_version");
-    expect(res[0]).toHaveProperty("fw_release");
+    expect(res[0]).toHaveProperty("build_release");
     expect(res[0]).toHaveProperty("model_id");
     expect(res[0]).toHaveProperty("token");
+    expect(res[0]).toHaveProperty("createdAt");
+    expect(res[0]).toHaveProperty("updatedAt");
     
   });
 
