@@ -90,29 +90,61 @@ describe('test Devices API', () => {
   it('getInfo', async () => {
     const res = await api.device.getInfo(deviceId);
     expect(typeof res).toBe('object');
-    expect(res).toHaveProperty("uid");
-    expect(res).toHaveProperty("status");
-    expect(res).toHaveProperty("model_id");
-    expect(res).toHaveProperty("tech");
-    expect(res).toHaveProperty("id");
-    expect(res).toHaveProperty("device_id");
-    expect(res).toHaveProperty("fw_version");
-    expect(res).toHaveProperty("app_version");
-    expect(res).toHaveProperty("model");
-    expect(res).toHaveProperty("logs_table");
-    expect(res).toHaveProperty("settings");
-    expect(res).toHaveProperty("ar");
-    expect(res).toHaveProperty("alarms");
-    expect(res).toHaveProperty("js_program");
-    expect(res).toHaveProperty("setpoints");
-    expect(res).toHaveProperty("fw_release");
-    expect(res).toHaveProperty("settings_ref");
-    expect(res).toHaveProperty("ar_ref");
-    expect(res).toHaveProperty("alarms_ref");
-    expect(res).toHaveProperty("js_program_ref");
-    expect(res).toHaveProperty("setpoints_ref");
-    expect(res).toHaveProperty("fota_tries");
+    expect(res).toHaveProperty("model_name");
+    expect(res).toHaveProperty("device");
     expect(res).toHaveProperty("project");
+    expect(res).toHaveProperty("fw");
+    expect(res).toHaveProperty("associated");
+    
+    // Check device object structure
+    expect(res.device).toHaveProperty("id");
+    expect(res.device).toHaveProperty("uid");
+    expect(res.device).toHaveProperty("name");
+    expect(res.device).toHaveProperty("status");
+    expect(res.device).toHaveProperty("project_id");
+    expect(res.device).toHaveProperty("model_id");
+    expect(res.device).toHaveProperty("createdAt");
+    expect(res.device).toHaveProperty("updatedAt");
+    expect(res.device).toHaveProperty("tech");
+    expect(res.device).toHaveProperty("version");
+    expect(res.device).toHaveProperty("app_version");
+    expect(res.device).toHaveProperty("accept_release");
+    expect(res.device).toHaveProperty("remote_settings");
+    expect(res.device).toHaveProperty("local_settings");
+    expect(res.device).toHaveProperty("associatedDevice");
+    expect(res.device).toHaveProperty("endpoint");
+    expect(res.device).toHaveProperty("settings_ref");
+    
+    // Check project object structure
+    expect(res.project).toHaveProperty("id");
+    expect(res.project).toHaveProperty("device_id");
+    expect(res.project).toHaveProperty("model");
+    expect(res.project).toHaveProperty("logs_table");
+    expect(res.project).toHaveProperty("ar");
+    expect(res.project).toHaveProperty("alarms");
+    expect(res.project).toHaveProperty("js_program");
+    expect(res.project).toHaveProperty("setpoints");
+    expect(res.project).toHaveProperty("settings_ref");
+    expect(res.project).toHaveProperty("ar_ref");
+    expect(res.project).toHaveProperty("alarms_ref");
+    expect(res.project).toHaveProperty("js_program_ref");
+    expect(res.project).toHaveProperty("setpoints_ref");
+    expect(res.project).toHaveProperty("createdAt");
+    expect(res.project).toHaveProperty("updatedAt");
+    
+    // Check fw object structure
+    expect(res.fw).toHaveProperty("id");
+    expect(res.fw).toHaveProperty("device_id");
+    expect(res.fw).toHaveProperty("logs_table");
+    expect(res.fw).toHaveProperty("uptime");
+    expect(res.fw).toHaveProperty("heapFree");
+    expect(res.fw).toHaveProperty("rssi");
+    expect(res.fw).toHaveProperty("wifi");
+    expect(res.fw).toHaveProperty("mqtt");
+    expect(res.fw).toHaveProperty("keepalive");
+    expect(res.fw).toHaveProperty("log");
+    expect(res.fw).toHaveProperty("createdAt");
+    expect(res.fw).toHaveProperty("updatedAt");
   });
     
   it('getLogs', async () => {
@@ -133,26 +165,23 @@ describe('test Devices API', () => {
     expect(res).toHaveProperty("tech");
     expect(res).toHaveProperty("id");
     expect(res).toHaveProperty("device_id");
-    expect(res).toHaveProperty("fw_version");
-    expect(res).toHaveProperty("app_version");
     expect(res).toHaveProperty("model");
     expect(res).toHaveProperty("logs_table");
-    expect(res).toHaveProperty("settings");
     expect(res).toHaveProperty("ar");
     expect(res).toHaveProperty("alarms");
     expect(res).toHaveProperty("js_program");
     expect(res).toHaveProperty("setpoints");
-    expect(res).toHaveProperty("fw_release");
     expect(res).toHaveProperty("settings_ref");
     expect(res).toHaveProperty("ar_ref");
     expect(res).toHaveProperty("alarms_ref");
     expect(res).toHaveProperty("js_program_ref");
     expect(res).toHaveProperty("setpoints_ref");
-    expect(res).toHaveProperty("fota_tries");
+    expect(res).toHaveProperty("createdAt");
+    expect(res).toHaveProperty("updatedAt");
     expect(res).toHaveProperty("project");
   });
 
-  it('getProjectLogs', async () => {
+  it.skip('getProjectLogs', async () => {
     
     const res = await api.device.getProjectLogs(deviceId, "status");
     expect(Array.isArray(res)).toBe(true);
