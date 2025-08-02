@@ -366,7 +366,7 @@ describe('test Models API', () => {
     expect(res[0]).toHaveProperty("id");
     expect(res[0]).toHaveProperty("filename");
     expect(res[0]).toHaveProperty("originalname");
-    expect(res[0]).toHaveProperty("fw_version");
+    expect(res[0]).toHaveProperty("version");
     expect(res[0]).toHaveProperty("app_version");
     expect(res[0]).toHaveProperty("fw_release");
     expect(res[0]).toHaveProperty("model_id");
