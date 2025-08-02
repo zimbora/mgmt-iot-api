@@ -6,3 +6,5 @@ yarn-error.log*
 .npm
 .DS_Store
 *.log
+/config/keys.js
+demo.bin
