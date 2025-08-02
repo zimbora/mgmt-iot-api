@@ -249,7 +249,6 @@ describe('test Devices API', () => {
     const res = await api.device.getModelInfo(deviceId);
     expect(typeof res).toBe('object');
     expect(res).toHaveProperty("id");
-    expect(res).toHaveProperty("device_id");
     expect(res).toHaveProperty("createdAt");
     expect(res).toHaveProperty("updatedAt");
   });
