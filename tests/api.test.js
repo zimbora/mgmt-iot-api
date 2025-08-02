@@ -187,6 +187,26 @@ describe('test Devices API', () => {
     
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 
+  it.skip('getSensorInfo', async () => {
+    const res = await api.device.getSensorInfo(deviceId);
+    expect(typeof res).toBe('object');
+    expect(res).toHaveProperty("id");
+    expect(res).toHaveProperty("device_id");
+    expect(res).toHaveProperty("createdAt");
+    expect(res).toHaveProperty("updatedAt");
+  });
+
+  it.skip('getSensorLogs', async () => {
+    
+    const res = await api.device.getSensorLogs(deviceId, null);
+    expect(Array.isArray(res)).toBe(true);
+    expect(res.length).toBeGreaterThan(0);
+    expect(res[0]).toHaveProperty("id");
+    expect(res[0]).toHaveProperty("device_id");
+    expect(res[0]).toHaveProperty("createdAt");
+    
+  }, 30000); // timeout in milliseconds (e.g., 30 seconds)
+
     it('getModelInfo', async () => {
     const res = await api.device.getModelInfo(deviceId);
     expect(typeof res).toBe('object');
