@@ -17,7 +17,7 @@
 
 ## 3rd step
 	
-	launch release on git and npm:
+	launch release on git:
 		>> gh release create ${tag}
 
 ## 4th step
