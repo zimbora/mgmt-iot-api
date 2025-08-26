@@ -105,6 +105,28 @@ module.exports = {
 
   device : {
 
+    getId : (uid)=>{
+
+      let params = {
+        uid
+      };
+      return axios_get(`/device/id`,params)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+    },
+
+    getPsk : (deviceId)=>{
+
+      let params = {};
+      return axios_get(`/device/${deviceId}/psk`,params)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+    },
+
     // get clients associated to a device
     getClients : (deviceId)=>{
 
@@ -147,20 +169,6 @@ module.exports = {
 
       let params = {}
       return axios_get(`/device/${deviceId}/project/info`,params)
-      .then( (response) => {
-        return Promise.resolve(response)
-      })
-      .catch( (error) => {return Promise.reject(error)})
-
-    },
-
-    //get logs from project table
-    getProjectLogs : (deviceId,sensor)=>{
-
-      let params = {
-        "sensor":sensor
-      }
-      return axios_get(`/device/${deviceId}/project/logs`,params, {}, 30000)
       .then( (response) => {
         return Promise.resolve(response)
       })
@@ -213,7 +221,7 @@ module.exports = {
         "sensor":sensor
       }
 
-      return axios_get(`/device/${deviceId}/sensor/logs`,params, {}, 30000)
+      return axios_get(`/device/${deviceId}/logs`,params, {}, 30000)
 
       .then( (response) => {
         return Promise.resolve(response)
@@ -227,20 +235,6 @@ module.exports = {
 
       let params = {}
       return axios_get(`/device/${deviceId}/model/info`,params)
-      .then( (response) => {
-        return Promise.resolve(response)
-      })
-      .catch( (error) => {return Promise.reject(error)})
-
-    },
-
-    //get logs from model table
-    getModelLogs : (deviceId,sensor)=>{
-
-      let params = {
-        "sensor":sensor
-      }
-      return axios_get(`/device/${deviceId}/model/logs`,params, {}, 30000)
       .then( (response) => {
         return Promise.resolve(response)
       })

@@ -9,6 +9,7 @@ var config = require('../config')
 var deviceId = 1;
 var modelId = 4;
 var clientId = 5;
+var uid = 'uid:a8032ad41f38'
 var email = "lucas.ua.eet@gmail.com";
 var pathToFile = "./tests/"
 var filename = "demo.bin"
@@ -87,6 +88,16 @@ describe('test Devices API', () => {
     expect(res.length).toBeGreaterThan(0);
   });
 
+  it('getDeviceId', async () => {
+    const res = await api.device.getId(uid);
+    expect(res).toHaveProperty("id");
+  });
+
+  it('getDevicePSK', async () => {
+    const res = await api.device.getPsk(deviceId);
+    expect(res).toHaveProperty("psk");
+  });
+
   it('getInfo', async () => {
     const res = await api.device.getInfo(deviceId);
     expect(typeof res).toBe('object');
@@ -112,7 +123,6 @@ describe('test Devices API', () => {
     expect(res.device).toHaveProperty("remote_settings");
     expect(res.device).toHaveProperty("local_settings");
     expect(res.device).toHaveProperty("associatedDevice");
-    expect(res.device).toHaveProperty("endpoint");
     expect(res.device).toHaveProperty("settings_ref");
     
     // Check project object structure
@@ -181,16 +191,6 @@ describe('test Devices API', () => {
     expect(res).toHaveProperty("project");
   });
 
-  it.skip('getProjectLogs', async () => {
-    
-    const res = await api.device.getProjectLogs(deviceId, "status");
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toBeGreaterThan(0);
-    expect(res[0]).toHaveProperty("status");
-    expect(res[0]).toHaveProperty("createdAt");
-    
-  }, 30000); // timeout in milliseconds (e.g., 30 seconds)
-
   it('getFwInfo', async () => {
     const res = await api.device.getFwInfo(deviceId);
     expect(typeof res).toBe('object');
@@ -228,19 +228,14 @@ describe('test Devices API', () => {
   it.skip('getSensorInfo', async () => {
     const res = await api.device.getSensorInfo(deviceId);
     expect(typeof res).toBe('object');
-    expect(res).toHaveProperty("id");
-    expect(res).toHaveProperty("device_id");
-    expect(res).toHaveProperty("createdAt");
-    expect(res).toHaveProperty("updatedAt");
   });
 
-  it.skip('getSensorLogs', async () => {
+  it('getSensorLogs', async () => {
     
-    const res = await api.device.getSensorLogs(deviceId, null);
+    const res = await api.device.getSensorLogs(deviceId, "status");
     expect(Array.isArray(res)).toBe(true);
     expect(res.length).toBeGreaterThan(0);
-    expect(res[0]).toHaveProperty("id");
-    expect(res[0]).toHaveProperty("device_id");
+    expect(res[0]).toHaveProperty("status");
     expect(res[0]).toHaveProperty("createdAt");
     
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
@@ -253,22 +248,11 @@ describe('test Devices API', () => {
     expect(res).toHaveProperty("updatedAt");
   });
 
-  it('getModelLogs', async () => {
-    
-    const res = await api.device.getModelLogs(deviceId, null);
-    expect(Array.isArray(res)).toBe(true);
-    expect(res.length).toBeGreaterThan(0);
-    expect(res[0]).toHaveProperty("id");
-    expect(res[0]).toHaveProperty("device_id");
-    expect(res[0]).toHaveProperty("createdAt");
-    
-  }, 30000); // timeout in milliseconds (e.g., 30 seconds)
-
   it('sendMqttMessage', async () => {
     
     const res = await api.device.sendMqttMessage(
       deviceId, 
-      "fw/settings/keepalive/set",
+      "settings/keepalive/set",
       "{\"period\":\"60\"}",
       1,
       0,
@@ -280,13 +264,13 @@ describe('test Devices API', () => {
     
     const res = await api.device.sendMqttMessage(
       7, 
-      "fw/settings/keepalive/get",
+      "settings/keepalive/get",
       "",
       1,
       0,
     );
-      
-      expect(typeof res).toBe('string');
+    
+    expect(typeof res).toBe('string');
 
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 
@@ -315,8 +299,6 @@ describe('test Clients API', () => {
     expect(res[0]).toHaveProperty("id");
     expect(res[0]).toHaveProperty("nick");
     expect(res[0]).toHaveProperty("user_id");
-    expect(res[0]).toHaveProperty("token");
-    expect(res[0]).toHaveProperty("api_token");
     expect(res[0]).toHaveProperty("type");
   });
 

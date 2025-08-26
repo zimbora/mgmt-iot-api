@@ -58,3 +58,39 @@ api.state()
 
 ## run only one test
   >> npx jest --testPathPattern=controller.test.js
+
+## Tests coverage
+
+ check API state
+    ✓ should return the correct result (116 ms)
+  test Devices API
+    ✓ getDevicesList (12 ms)
+    ✓ getChangedDevices (11 ms)
+    ✓ getChangedDevicesPermissions (11 ms)
+    ✓ getDeviceClients (13 ms)
+    ✓ getDeviceId (10 ms)
+    ✓ getDevicePSK (9 ms)
+    ✓ getInfo (32 ms)
+    ✓ getLogs (124 ms)
+    ✓ getProjectInfo (31 ms)
+    ✓ getFwInfo (28 ms)
+    ✓ getFwLogs (15 ms)
+    ✓ getSensorLogs (132 ms)
+    ✓ getModelInfo (10 ms)
+    ✓ sendMqttMessage (110 ms)
+    ✓ sendMqttMessage (189 ms)
+    ○ skipped getSensorInfo
+  test Users API
+    ✓ getUsers (10 ms)
+  test Clients API
+    ✓ getClients (24 ms)
+    ✓ getClientDevices (24 ms)
+    ✓ getClientId (11 ms)
+  test Models API
+    ✓ getModels (11 ms)
+    ✓ getModelInfo (10 ms)
+    ✓ getModelFirmwares (12 ms)
+    ✓ uploadFirmware (813 ms)
+    ✕ deleteFirmware (76 ms)
+  test MQTT credentials API
+    ✓ getMQTTCredentials (9 ms)
