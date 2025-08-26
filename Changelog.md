@@ -1,5 +1,15 @@
 # Changelog
 
+# v1.0.9
+	New methods: 
+	 - getId, 
+	 - getPSK
+	Removes:
+	 - getProjectLogs
+	 - getModelLogs
+	Fixes:
+	 - sendMqttMessage
+
 # v1.0.8
 	Adds sensor info and sensor logs support
 	Adds getLogs method to device API without fw prefix
