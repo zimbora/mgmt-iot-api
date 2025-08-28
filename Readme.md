@@ -42,7 +42,8 @@ api.state()
 	"/device/:deviceId/model/info"
 	"/device/:deviceId/model/logs?sensor=x"
 	"/device/${deviceId}/mqtt/message" 
-	"/device/${deviceId}/observation" 
+	"/device/${deviceId}/observation"
+	"/device/${deviceId}/observations" 
 
 ## Posts
 
