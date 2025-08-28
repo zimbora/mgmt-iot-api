@@ -1,17 +1,23 @@
-name: "CodeQL"
+name: CodeQL
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ main ]
+    branches: [ "main" ]
   schedule:
-    - cron: '21 23 * * 0'
+    - cron: "0 2 * * 1" # Weekly on Mondays at 02:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  analyze:
+  codeql:
     name: Analyze
     runs-on: ubuntu-latest
+
+    # Minimal permissions for CodeQL to upload results to the Security tab
     permissions:
       actions: read
       contents: read
@@ -20,19 +26,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'javascript' ]
+        # For a Node.js repo, use the JavaScript/TypeScript extractor
+        language: [ "javascript-typescript" ]
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
-      with:
-        languages: ${{ matrix.language }}
+      # Initialize CodeQL with recommended extended queries
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          queries: security-extended,security-and-quality
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
+      # For JavaScript/TypeScript projects, no compile is needed.
+      # This step is harmless and auto-skipped if not applicable.
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"
