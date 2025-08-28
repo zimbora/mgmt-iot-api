@@ -7,6 +7,5 @@ yarn-error.log*
 .DS_Store
 *.log
 /config/keys.js
-demo.bin
 coverage/
 .nyc_output/
