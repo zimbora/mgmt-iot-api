@@ -274,6 +274,20 @@ describe('test Devices API', () => {
 
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 
+  it('getObservations', async () => {
+    const res = await api.device.getObservations(deviceId);
+    expect(Array.isArray(res)).toBe(true);
+    if(res && res.length > 0) {
+      expect(res[0]).toHaveProperty("id");
+      expect(res[0]).toHaveProperty("device_id");
+      expect(res[0]).toHaveProperty("objectId");
+      expect(res[0]).toHaveProperty("objectInstanceId");
+      expect(res[0]).toHaveProperty("resourceId");
+      expect(res[0]).toHaveProperty("observing");
+      expect(res[0]).toHaveProperty("observationTkn");
+    }
+  });
+
   it('getObservationStatus', async () => {
     const objectId = 3;
     const objectInstanceId = 0;

@@ -1,5 +1,10 @@
 # Changelog
 
+# v1.0.11
+	New methods:
+	 - getObservations
+	Adds support to retrieve all observations for a device from the lwm2m project
+
 # v1.0.10
 	New methods:
 	 - getObservationStatus

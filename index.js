@@ -258,6 +258,18 @@ module.exports = {
 
     },
 
+    //get observations
+    getObservations : (deviceId)=>{
+
+      let params = {}
+      return axios_get(`/device/${deviceId}/observations`,params)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
     //get observation status
     getObservationStatus : (deviceId,objectId,objectInstanceId,resourceId)=>{
 
