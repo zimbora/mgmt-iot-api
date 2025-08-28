@@ -1,5 +1,11 @@
 # Changelog
 
+# v1.0.10
+	New methods:
+	 - getObservationStatus
+	 - updateObservationStatus
+	Supports LwM2M observation management for devices in the lwm2m project
+
 # v1.0.9
 	New methods: 
 	 - getId, 
