@@ -7,6 +7,7 @@ var api = require('../index.js')
 var config = require('../config')
 
 var deviceId = 1;
+var lwm2mDeviceId = 26;
 var modelId = 4;
 var clientId = 5;
 var uid = 'uid:a8032ad41f38'
@@ -275,7 +276,7 @@ describe('test Devices API', () => {
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 
   it('getObservations', async () => {
-    const res = await api.device.getObservations(deviceId);
+    const res = await api.device.getObservations(lwm2mDeviceId);
     expect(Array.isArray(res)).toBe(true);
     if(res && res.length > 0) {
       expect(res[0]).toHaveProperty("id");
@@ -293,7 +294,7 @@ describe('test Devices API', () => {
     const objectInstanceId = 0;
     const resourceId = 5700;
     
-    const res = await api.device.getObservationStatus(deviceId, objectId, objectInstanceId, resourceId);
+    const res = await api.device.getObservationStatus(lwm2mDeviceId, objectId, objectInstanceId, resourceId);
     expect(typeof res).toBe('object');
     if(res) {
       expect(res).toHaveProperty("id");
@@ -306,11 +307,11 @@ describe('test Devices API', () => {
   it('updateObservationStatus', async () => {
     const objectId = 3;
     const objectInstanceId = 0;
-    const resourceId = 5700;
-    const observing = true;
-    const token = "test123";
+    const resourceId = 5605;
+    const observing = false;
+    const token = "";
     
-    const res = await api.device.updateObservationStatus(deviceId, objectId, objectInstanceId, resourceId, observing, token);
+    const res = await api.device.updateObservationStatus(lwm2mDeviceId, objectId, objectInstanceId, resourceId, observing, token);
     expect(typeof res).toBe('object');
     
   });

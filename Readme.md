@@ -1,5 +1,21 @@
 # mgmt-iot-api
 
+[![Tests](https://github.com/zimbora/mgmt-iot-api/actions/workflows/test.yml/badge.svg)](https://github.com/zimbora/mgmt-iot-api/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/zimbora/mgmt-iot-api/graph/badge.svg?token=3WZ5SMDRTH)](https://codecov.io/gh/zimbora/mgmt-iot-api)
+[![CodeQL](https://github.com/zimbora/mgmt-iot-api/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/zimbora/mgmt-iot-api/actions/workflows/codeql.yml)
+
+[![npm version](https://img.shields.io/npm/v/mgmt-iot-api.svg)](https://www.npmjs.com/package/mgmt-iot-api)
+[![node](https://img.shields.io/node/v/mgmt-iot-api.svg)](https://www.npmjs.com/package/mgmt-iot-api)
+[![license](https://img.shields.io/npm/l/mgmt-iot-api.svg)](LICENSE)
+[![npm downloads](https://img.shields.io/npm/dm/mgmt-iot-api.svg)](https://www.npmjs.com/package/mgmt-iot-api)
+[![types](https://img.shields.io/npm/types/mgmt-iot-api.svg)](https://www.npmjs.com/package/mgmt-iot-api)
+
+[![bundle size](https://img.shields.io/bundlephobia/minzip/mgmt-iot-api.svg)](https://bundlephobia.com/package/mgmt-iot-api)
+[![Known Vulnerabilities](https://snyk.io/test/github/zimbora/mgmt-iot-api/badge.svg)](https://snyk.io/test/github/zimbora/mgmt-iot-api)
+[![last commit](https://img.shields.io/github/last-commit/zimbora/mgmt-iot-api.svg)](https://github.com/zimbora/mgmt-iot-api/commits)
+[![issues](https://img.shields.io/github/issues/zimbora/mgmt-iot-api.svg)](https://github.com/zimbora/mgmt-iot-api/issues)
+[![PRs](https://img.shields.io/github/issues-pr/zimbora/mgmt-iot-api.svg)](https://github.com/zimbora/mgmt-iot-api/pulls)
+
 API to interact with mgmt-iot server.
 [mgmt-iot](https://github.com/zimbora/mgmt-iot-demo) is a web platform to manage IoT devices. It uses [mgmt-iot-web](https://github.com/zimbora/mgmt-iot-web) npm module.
 
@@ -57,7 +73,7 @@ api.state()
 ## Tests
 
 ## run all tests
-  >> npm run
+  >> npm test
 
 ## run only one test
   >> npx jest --testPathPattern=controller.test.js
