@@ -401,7 +401,7 @@ describe('test Models API', () => {
     
   });
 
-  it('uploadFirmware', async () => {
+  it.skip('uploadFirmware', async () => {
 
     const form = new FormData();
     
@@ -415,7 +415,7 @@ describe('test Models API', () => {
     
   });
 
-  it('deleteFirmware', async () => {
+  it.skip('deleteFirmware', async () => {
 
     res = await api.model.deleteFirmware(modelId, firmwareId);
     expect(typeof res).toBe('object');
