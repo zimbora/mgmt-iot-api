@@ -274,6 +274,33 @@ describe('test Devices API', () => {
 
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 
+  it('getObservationStatus', async () => {
+    const objectId = 3;
+    const objectInstanceId = 0;
+    const resourceId = 5700;
+    
+    const res = await api.device.getObservationStatus(deviceId, objectId, objectInstanceId, resourceId);
+    expect(typeof res).toBe('object');
+    if(res) {
+      expect(res).toHaveProperty("id");
+      expect(res).toHaveProperty("observing");
+      expect(res).toHaveProperty("observationTkn");
+    }
+    
+  });
+
+  it('updateObservationStatus', async () => {
+    const objectId = 3;
+    const objectInstanceId = 0;
+    const resourceId = 5700;
+    const observing = true;
+    const token = "test123";
+    
+    const res = await api.device.updateObservationStatus(deviceId, objectId, objectInstanceId, resourceId, observing, token);
+    expect(typeof res).toBe('object');
+    
+  });
+
 });
 
 describe('test Users API', () => {

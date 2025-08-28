@@ -258,6 +258,40 @@ module.exports = {
 
     },
 
+    //get observation status
+    getObservationStatus : (deviceId,objectId,objectInstanceId,resourceId)=>{
+
+      let params = {
+        "objectId":objectId,
+        "objectInstanceId":objectInstanceId,
+        "resourceId":resourceId
+      }
+      return axios_get(`/device/${deviceId}/observation`,params)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
+    //update observation status
+    updateObservationStatus : (deviceId,objectId,objectInstanceId,resourceId,observing,token)=>{
+
+      let data = {
+        "objectId":objectId,
+        "objectInstanceId":objectInstanceId,
+        "resourceId":resourceId,
+        "observing":observing,
+        "token":token
+      }
+      return axios_put(`/device/${deviceId}/observation`,data)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
   },
 
   client : {

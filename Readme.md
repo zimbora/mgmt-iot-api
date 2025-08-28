@@ -42,11 +42,13 @@ api.state()
 	"/device/:deviceId/model/info"
 	"/device/:deviceId/model/logs?sensor=x"
 	"/device/${deviceId}/mqtt/message" 
+	"/device/${deviceId}/observation" 
 
 ## Posts
 
 ## Put
 	"/model/${modelId}/firmwares"
+	"/device/${deviceId}/observation"
 
 ## Delete
 	"/model/${modelId}/firmware"
