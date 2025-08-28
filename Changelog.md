@@ -1,5 +1,8 @@
 # Changelog
 
+# v1.0.12
+	Add GitHub workflows for testing, coverage, and NPM publishing with updated README badges (#14)
+
 # v1.0.11
 	New methods:
 	 - getObservations

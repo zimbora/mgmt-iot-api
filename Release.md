@@ -8,7 +8,7 @@
 	
 	- Add changes to Changelog.md file
 	- increase version of package.json file
-	- run npm update
+	- run npm install
 
 ## 2nd step
 	
