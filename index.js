@@ -258,6 +258,23 @@ module.exports = {
 
     },
 
+    sendMqttMessageChunked : (deviceId,topic,payload,qos,retain,timeout=5000)=>{
+
+      let data = {
+        "topic":topic,
+        "payload":payload,
+        "qos":qos,
+        "retain":retain,
+        "timeout":timeout
+      }
+      return axios_post(`/device/${deviceId}/mqtt/message/chunked`,data, {},timeout)
+      .then( (response) => {
+        return Promise.resolve(response)
+      })
+      .catch( (error) => {return Promise.reject(error)})
+
+    },
+
     //get observations
     getObservations : (deviceId)=>{
 
@@ -375,7 +392,7 @@ module.exports = {
 function axios_init(opts, debug = false){
 
   instance = axios.create({
-    baseURL: 'https://'+opts.domain,
+    baseURL: opts.domain,
     timeout: 1000,
     headers: opts.auth
   });
@@ -412,7 +429,7 @@ function axios_get(path, params = {}, headers = {}, timeout = 1500){
 }
 
 function axios_post(path, data = {}, headers = {}, timeout = 1500) {
-  return instance.post(path, data, { headers: headers }, {timeout:timeout})
+  return instance.post(path, data, { headers: headers, timeout: timeout })
     .then(function (response) {
       if(response.data.Error){
         console.log(response.data.Message);

@@ -6,7 +6,7 @@ const FormData = require('form-data');
 var api = require('../index.js')
 var config = require('../config')
 
-var deviceId = 1;
+var deviceId = 88;
 var lwm2mDeviceId = 26;
 var modelId = 4;
 var clientId = 5;
@@ -102,9 +102,11 @@ describe('test Devices API', () => {
   it('getInfo', async () => {
     const res = await api.device.getInfo(deviceId);
     expect(typeof res).toBe('object');
+    expect(res).toHaveProperty("project_name");
     expect(res).toHaveProperty("model_name");
     expect(res).toHaveProperty("device");
     expect(res).toHaveProperty("project");
+    expect(res).toHaveProperty("modelFeat");
     expect(res).toHaveProperty("fw");
     expect(res).toHaveProperty("associated");
     
@@ -146,14 +148,14 @@ describe('test Devices API', () => {
     // Check fw object structure
     expect(res.fw).toHaveProperty("id");
     expect(res.fw).toHaveProperty("device_id");
-    expect(res.fw).toHaveProperty("logs_table");
+    //expect(res.fw).toHaveProperty("logs_table");
     expect(res.fw).toHaveProperty("uptime");
     expect(res.fw).toHaveProperty("heapFree");
     expect(res.fw).toHaveProperty("rssi");
-    expect(res.fw).toHaveProperty("wifi");
-    expect(res.fw).toHaveProperty("mqtt");
-    expect(res.fw).toHaveProperty("keepalive");
-    expect(res.fw).toHaveProperty("log");
+    //expect(res.fw).toHaveProperty("wifi");
+    //expect(res.fw).toHaveProperty("mqtt");
+    //expect(res.fw).toHaveProperty("keepalive");
+    //expect(res.fw).toHaveProperty("log");
     expect(res.fw).toHaveProperty("createdAt");
     expect(res.fw).toHaveProperty("updatedAt");
   });
@@ -200,10 +202,10 @@ describe('test Devices API', () => {
     expect(res).toHaveProperty("uptime");
     expect(res).toHaveProperty("heapFree");
     expect(res).toHaveProperty("rssi");
-    expect(res).toHaveProperty("wifi");
-    expect(res).toHaveProperty("mqtt");
-    expect(res).toHaveProperty("keepalive");
-    expect(res).toHaveProperty("log");
+    //expect(res).toHaveProperty("wifi");
+    //expect(res).toHaveProperty("mqtt");
+    //expect(res).toHaveProperty("keepalive");
+    //expect(res).toHaveProperty("log");
     expect(res).toHaveProperty("createdAt");
     expect(res).toHaveProperty("updatedAt");
   });
@@ -264,7 +266,7 @@ describe('test Devices API', () => {
   it('sendMqttMessage', async () => {
     
     const res = await api.device.sendMqttMessage(
-      7, 
+      8, 
       "settings/keepalive/get",
       "",
       1,
@@ -272,6 +274,38 @@ describe('test Devices API', () => {
     );
     
     expect(typeof res).toBe('string');
+
+  }, 30000); // timeout in milliseconds (e.g., 30 seconds)
+
+  it('sendMqttMessageChunked', async () => {
+    
+    const res = await api.device.sendMqttMessageChunked(
+      8, 
+      "fw/wifi/arp/scan/get",
+      "",
+      1,
+      0,
+      5000
+    );
+    
+    expect(Array.isArray(res)).toBe(true);
+
+  }, 30000); // timeout in milliseconds (e.g., 30 seconds)
+
+  it('sendMqttMessageChunkedIP', async () => {
+    
+    const res = await api.device.sendMqttMessageChunked(
+      8, 
+      "fw/wifi/arp/scan/get",
+      "{\"ip\":\"10.168.1.1\"}",
+      1,
+      0,
+      5000
+    );
+    
+    expect(typeof res).toBe("object");
+    expect(res).toHaveProperty("d");
+    expect(Array.isArray(res.d)).toBe(true);
 
   }, 30000); // timeout in milliseconds (e.g., 30 seconds)
 

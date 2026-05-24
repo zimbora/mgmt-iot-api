@@ -9,7 +9,8 @@ try{
 }
 
 module.exports = {
-  domain : "devices.dev.inloc.cloud/api",
+  //domain : "http://localhost:8081/api",
+  domain : "https://devices.dev.inloc.cloud/api",
   api_token : key?.api_token || process.env.API_TOKEN,
   debug_axios : false,
 }
