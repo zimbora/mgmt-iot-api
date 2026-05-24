@@ -1,5 +1,12 @@
 # Changelog
 
+# v1.0.13
+	fixes npm publish workflow. Skips test firmware upload and delete
+	feat: supports sendMqttMessageChunked
+	fix: tests
+	changes: domain usage, allow localhost call
+	fix: axios post timeout
+
 # v1.0.12
 	Add GitHub workflows for testing, coverage, and NPM publishing with updated README badges (#14)
 
